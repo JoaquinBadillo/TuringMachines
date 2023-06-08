@@ -1,0 +1,64 @@
+name: sub
+source code: |
+  # Turing Machine for
+  # Unary Number Subtraction
+  # Joaquin Badillo
+
+  # Premature optimization is the root of all evil - Knuth, D.
+  # If it works it works... :D
+
+  # If and only if the machine ends on the "accept" state it is valid
+
+  input: '111-11'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      1: {R: find-}
+    
+    rec:
+      1: {R: find-}
+      '-': {write: ' ',  R: check_empty}
+    
+    find-:
+      1: {R: find-}
+      '-': {R: check_last}
+    
+    check_last:
+      ' ': {L: delete-}
+      1: {R: find_last}
+      
+    delete-:
+      '-': {write: ' ', L: accept}
+      
+    find_last:
+      1: {R: find_last}
+      ' ': {L: sub1}
+    
+    sub1:
+      1: {write: ' ', L: find_start}
+    
+    find_start:
+      [1, '-']: {L: find_start}
+      ' ': {R: trim}
+    
+    trim:
+      1: {write: ' ', R: rec}
+      
+    check_empty:
+      ' ': {L: accept}
+      
+    accept:
+      
+positions:
+  start: {x: 132.24, y: 219.69, fixed: false}
+  rec: {x: 323.77, y: 137.41, fixed: false}
+  find-: {x: 267.61, y: 260.77, fixed: false}
+  check_last: {x: 426.08, y: 238.08}
+  delete-: {x: 567.22, y: 196.51, fixed: false}
+  find_last: {x: 538.63, y: 339.22, fixed: false}
+  sub1: {x: 463.99, y: 462.33, fixed: false}
+  find_start: {x: 320.06, y: 445.83, fixed: false}
+  trim: {x: 332.79, y: 296.14, fixed: false}
+  check_empty: {x: 404.98, y: 20, fixed: false}
+  accept: {x: 544.93, y: 55.42, fixed: false}

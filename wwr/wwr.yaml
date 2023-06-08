@@ -1,0 +1,104 @@
+name: wwr
+source code: |-
+  # Turing Machine to read strings of the form
+  # wwᴿ, with w = (0+1)*
+  # Joaquín Badillo
+
+  input: '010'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      0: {write: ' ', R: find_last_zero}
+      
+    find_last_zero:
+      [0, 1]: {R: find_last_zero}
+      ' ': {L: delete_zero}
+    
+    find_last_one:
+      [0, 1]: {R: find_last_one}
+      ' ': {L: delete_one}
+    
+    delete_zero:
+      0: {write: ' ', L: find_start}
+      
+    delete_one:
+      1: {write: ' ', L: find_start_0}
+    
+    find_start:
+      [0, 1]: {L: find_start}
+      ' ': {R: check_case}
+    
+    find_start_0:
+      [0, 1]: {L: find_start}
+      ' ': {R: check_one}
+    
+    check_case:
+      0: {write: ' ', R: find_last_zero}
+      1: {write: ' ', R: find_last_one}
+      ' ': {R: accept}
+    
+    check_one:
+      1: {write: ' ', R: find_last_one} 
+      ' ': {R: accept}
+    
+    accept:
+      
+positions:
+  start: {x: 472.95, y: 480, fixed: false}
+  find_last_zero: {x: 379.09, y: 376.64, fixed: false}
+  find_last_one: {x: 565.26, y: 131.06, fixed: false}
+  delete_zero: {x: 234.23, y: 358.01, fixed: false}
+  delete_one: {x: 459.33, y: 30.13, fixed: false}
+  find_start: {x: 341.53, y: 265.62, fixed: false}
+  find_start_0: {x: 358.86, y: 128.81, fixed: false}
+  check_case: {x: 497.34, y: 278.73, fixed: false}
+  check_one: {x: 482.66, y: 224.05, fixed: false}
+  accept: {x: 658.88, y: 260.07}
+editor contents: |-
+  # Turing Machine to read strings of the form
+  # wwᴿ, with w = (0+1)*
+  # Joaquín Badillo
+
+  # If and only if the machine ends on the "accept" state it is valid
+
+  input: '010'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      0: {write: ' ', R: find_last_zero}
+      
+    find_last_zero:
+      [0, 1]: {R: find_last_zero}
+      ' ': {L: delete_zero}
+    
+    find_last_one:
+      [0, 1]: {R: find_last_one}
+      ' ': {L: delete_one}
+    
+    delete_zero:
+      0: {write: ' ', L: find_start}
+      
+    delete_one:
+      1: {write: ' ', L: find_start_0}
+    
+    find_start:
+      [0, 1]: {L: find_start}
+      ' ': {R: check_case}
+    
+    find_start_0:
+      [0, 1]: {L: find_start}
+      ' ': {R: check_one}
+    
+    check_case:
+      0: {write: ' ', R: find_last_zero}
+      1: {write: ' ', R: find_last_one}
+      ' ': {R: accept}
+    
+    check_one:
+      1: {write: ' ', R: find_last_one} 
+      ' ': {R: accept}
+    
+    accept:
+      

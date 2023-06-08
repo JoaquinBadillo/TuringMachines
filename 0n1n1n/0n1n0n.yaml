@@ -1,0 +1,62 @@
+name: 0n1n0n
+source code: |
+  # Turing Machine to recognize strings of the form 
+  # 0ⁿ1ⁿ0ⁿ
+  # Joaquín Badillo
+
+  input: '000111000'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      0: {write: ' ', R: find_1}
+      x: {write: ' ', R: start}
+      ' ': {R: accept}
+    find_1:
+      [0,x]: {R: find_1}
+      1: {write: x, R: find_end}
+    find_end:
+      [0, 1, x]: {R: find_end}
+      ' ': {L: remove}
+    remove:
+      0: {write: ' ', L: find_start}
+    find_start:
+      [0, 1, 'x']: {L: find_start}
+      ' ': {R: start}
+    accept:
+      
+positions:
+  start: {x: 374.42, y: 173.01}
+  find_1: {x: 364.29, y: 338.76}
+  find_end: {x: 553.43, y: 330.97}
+  remove: {x: 663.93, y: 248.86}
+  find_start: {x: 562.77, y: 124.12}
+  accept: {x: 244.41, y: 228.08}
+editor contents: |
+  # Turing Machine to recognize strings of the form 
+  # 0ⁿ1ⁿ0ⁿ
+  # Joaquín Badillo
+
+  # If and only if the machine ends on the "accept" state it is valid
+
+  input: '000111000'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      0: {write: ' ', R: find_1}
+      x: {write: ' ', R: start}
+      ' ': {R: accept}
+    find_1:
+      [0,x]: {R: find_1}
+      1: {write: x, R: find_end}
+    find_end:
+      [0, 1, x]: {R: find_end}
+      ' ': {L: remove}
+    remove:
+      0: {write: ' ', L: find_start}
+    find_start:
+      [0, 1, 'x']: {L: find_start}
+      ' ': {R: start}
+    accept:
+      
